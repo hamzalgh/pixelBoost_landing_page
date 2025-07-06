@@ -10,6 +10,8 @@
     --bg-dark: hsl(220, 50%, 10%);
     --bg: hsl(220, 50%, 15%);
     --bg-light: hsl(220, 50%, 20%);
+    --gradiant: linear-gradient(0deg, var(--bg) 60%, var(--bg-light));
+    --gradiant-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
     --bg-accent: hsl(210, 100%, 50%);
     --bg-accent-secondary: hsl(210, 100%, 60%);
     --text: hsl(0, 0%, 95%);
@@ -24,6 +26,8 @@ body.light{
     --bg-dark: hsl(0, 0%, 90%);
     --bg: hsl(0, 0%, 95%);
     --bg-light: hsl(0, 0%, 100%);
+    --gradiant: linear-gradient(0deg, var(--bg) 60%, var(--bg-light));
+    --gradiant-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
     --bg-accent: hsl(210, 100%, 50%);
     --bg-accent-secondary: hsl(210, 100%, 60%);
     --text: hsl(0, 0%, 5%);
@@ -167,10 +171,28 @@ section ul li{
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: var(--bg-light);
+    background: var(--gradiant);
     box-shadow: 0 2px 5px var(--shadow);
     border-radius: 8px;
     border-top: 1px solid var(--highlight);
+}
+section ul li:hover{
+    transform: translateY(-5px) scale(1.02);
+    background: var(--gradiant-hover);
+    transition: transform 0.2s ease;
+}
+@keyframes fadeScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+section ul li.animate {
+    animation: fadeScaleIn .6s ease;
 }
 section ul li strong{
     font-size: 1.8em;
@@ -182,9 +204,37 @@ section div article{
     align-items: center;
     max-width: 220px;
     padding: 20px;
-    background-color: var(--bg-light);
+    background: var(--gradiant);
     box-shadow: 0 2px 5px var(--shadow);
     border-radius: 8px;
+    border-top: 1px solid var(--highlight);
+}
+section div article:hover{
+    transform: translateY(-5px) scale(1.02);
+    background: var(--gradiant-hover);
+    transition: transform 0.2s ease;
+}
+@keyframes slideFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+section div article.animate {
+    animation: slideFadeUp 0.6s ease-in-out;
+}
+section div article:nth-child(2) {
+    animation-delay: 0.2s;
+}
+section div article:nth-child(3) {
+    animation-delay: 0.4s;
+}
+section div article:nth-child(4) {
+    animation-delay: 0.6s;
 }
 section div article h3{
     font-size: 1em;
@@ -208,10 +258,11 @@ section div article p{
 #contact form {
     max-width: 700px;
     margin: 0 auto;
-    background-color: var(--bg-light);
+    background: var(--gradiant);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 2px 10px var(--shadow);
+    border-top: 1px solid var(--highlight);
 }
 #contact label {
     display: block;
@@ -347,4 +398,28 @@ footer {
     margin-top: 20px;
     font-size: 0.9rem;
     color: var(--text-muted);
+}
+#upBtn {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--gradiant);
+    color: var(--text);
+    border: none;
+    border-radius: 8px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--shadow);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+#upBtn:hover {
+    background: var(--gradiant-hover);
+    transform: translateY(-10px);
+}
+#upBtn.show{
+    display: flex;
 }
